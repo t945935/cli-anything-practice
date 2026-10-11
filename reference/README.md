@@ -14,5 +14,6 @@
 | [lesson-quality-report.md](lesson-quality-report.md) | 第 10 章正常教材的品質報告範例 |
 | [weekly-attention-report.md](weekly-attention-report.md)／[weekly-clean-report.md](weekly-clean-report.md) | 第 11 章整理來源前後的每週彙整 |
 | [toolbox-inventory.md](toolbox-inventory.md) | 第 12 章工具箱盤點摘要範例，不等同成品驗收 |
+| [agent-handoff.md](agent-handoff.md) | 第 13 章 Agent 任務交付範例與錯誤副本對照 |
 
 PDF 與試算表可能因建立時間、字型與軟體版本而有不同位元組內容。請比較文字、數值、型別、尺寸及版面，不要要求輸出雜湊與參考成品相同。

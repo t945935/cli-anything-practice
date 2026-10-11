@@ -14,6 +14,7 @@
 | [10](../ch10/README.md) | `python ch10/audit_lesson.py` | 來源＋成品 → 新品質報告與預覽 | 通過基本檢查仍需人工檢視 |
 | [11](../ch11/README.md) | `python ch11/run_weekly.py` | 週設定 → 多階段成果與彙整 | 每次執行一輪，沒有安裝排程 |
 | [12](../ch12/README.md) | `python ch12/toolbox.py` | 本機環境 → 盤點及差異報告 | 差異不等於功能相容性判斷 |
+| [13](../ch13/README.md) | 任務卡，沿用第 8～10 章工具 | 教材需求 → 有證據的 Agent 交付說明 | 文字規則不是權限隔離；仍需人工檢視 |
 
 ## 統一操作習慣
 
