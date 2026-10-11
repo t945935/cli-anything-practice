@@ -2,7 +2,7 @@
 
 《讓 AI 幫你操作軟體：CLI-Anything 工作自動化實戰》的範例程式、練習素材與參考資料。
 
-本專案是獨立的教學配套，並非 HKUDS 官方專案。目前提供第 3～11 章；後續章節尚未收錄。所有報名資料皆為虛構的教學資料。
+本專案是獨立的教學配套，並非 HKUDS 官方專案。目前提供第 3～12 章的讀者練習與參考資料。所有報名資料皆為虛構的教學資料。
 
 | 章節 | 練習 | 學習重點 |
 | --- | --- | --- |
@@ -15,6 +15,7 @@
 | [第 9 章](ch09/README.md) | JSON、工作狀態與明確重試 | 輸入快照、工作紀錄、回應檢查與重試隔離 |
 | [第 10 章](ch10/README.md) | 驗證成品與產生品質報告 | 重新讀取成品、錯誤注入、JSON 與 Markdown 報告 |
 | [第 11 章](ch11/README.md) | 建立每週工作自動化流程 | 階段相依、結束碼轉換、來源快照與每週彙整 |
+| [第 12 章](ch12/README.md) | 維護自己的自動化工具箱 | 環境盤點、差異比較、維護紀錄與回歸驗證 |
 
 先閱讀 [安裝指南](docs/installation.md)，在 Ubuntu／WSL 的 Bash 終端機準備環境。以下指令都從儲存庫根目錄執行：
 
@@ -41,6 +42,7 @@ python ch03/run-example.py output/ch03
 - [預期結果與練習題](docs/exercises.md)
 - [參考成品](reference/README.md)
 - [官方資源與版本紀錄](docs/references.md)
+- [工具索引](docs/toolbox-index.md)與[維護紀錄範本](ch12/maintenance-checklist.md)
 
 ## 執行基本測試
 
@@ -48,6 +50,6 @@ python ch03/run-example.py output/ch03
 python -m unittest discover -s tests -v
 ```
 
-這組測試涵蓋資料分類、金額規則及圖片幾何計畫，不需要啟動 LibreOffice。完整操作與成品驗證請依各章 README 執行。
+這組測試涵蓋資料規則、圖片幾何、命令介面、工作狀態、成品檢查與環境比較，不需要啟動 LibreOffice。完整操作與成品驗證請依各章 README 執行。
 
 若要回報問題，請附上作業系統、Python 與 CLI 版本、執行命令、結束碼及錯誤訊息；分享 `commands.json` 等紀錄前請移除個人路徑及私人文件內容。
