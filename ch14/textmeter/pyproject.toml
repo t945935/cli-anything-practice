@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cli-anything-practice-textmeter-core"
+version = "0.1.0"
+description = "第十四章 CLI 生成練習的純文字統計後端"
+readme = "README.md"
+requires-python = ">=3.10"
+
+[tool.setuptools]
+py-modules = ["textmeter"]
