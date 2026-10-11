@@ -70,6 +70,13 @@ class WeeklyTests(unittest.TestCase):
             rows = {row['name']: row['status'] for row in report['stages']}
             self.assertEqual(rows['documents'], 'failed')
             self.assertEqual(rows['registrations'], 'failed')
+            details = {row['name']: row.get('detail', '') for row in report['stages']}
+            self.assertIn('結束碼 1', details['documents'])
+            self.assertIn('simulated failure', details['documents'])
+            self.assertIn('summary.json', details['registrations'])
+            self.assertIn('simulated failure', details['registrations'])
+            self.assertNotIn('FileNotFoundError', details['documents'])
+            self.assertNotIn('FileNotFoundError', details['registrations'])
             self.assertEqual(rows['quality'], 'blocked')
             self.assertFalse((output / 'quality').exists())
 

@@ -2,6 +2,8 @@
 
 本書範例的實測環境為 Ubuntu 24.04、Python 3.12.3、LibreOffice 24.2.7.2。Windows 讀者建議使用 WSL 2 的 Ubuntu 24.04，並在 Ubuntu 終端機執行以下命令；Windows 原生 PowerShell、macOS 與 WSL 本身尚未在本專案完整驗證。
 
+本書 2026 年 10 月版的練習程式固定在 Git tag `book-2026-10`。此標籤說明及本輪學習者模擬限制見 [版本測試摘要](book-2026-10.md)。
+
 ## 1. 準備系統工具
 
 以下是一般 Ubuntu／WSL 的安裝方式，需要系統管理權限。作者實測環境使用同版 Ubuntu 套件解壓於使用者目錄，並非以此 apt 流程重新安裝。
@@ -16,7 +18,8 @@ sudo apt install git python3-venv libreoffice-writer libreoffice-calc libreoffic
 ## 2. 下載專案並建立虛擬環境
 
 ```bash
-git clone https://github.com/t945935/cli-anything-practice.git
+git clone --branch book-2026-10 --single-branch \
+  https://github.com/t945935/cli-anything-practice.git
 cd cli-anything-practice
 python3 -m venv .venv
 source .venv/bin/activate
@@ -24,7 +27,7 @@ python -m pip install -r requirements.txt
 python -m pip check
 ```
 
-已下載專案者不必再次 clone。重新開啟終端機後，回到本專案並執行 `source .venv/bin/activate`。
+已下載本書固定版本者不必再次 clone。跟做期間不要更新到 `main`；重新開啟終端機後，回到本專案並執行 `source .venv/bin/activate`。
 
 `requirements.txt` 固定教學使用的兩個 CLI 原始碼 commit；安裝需要連上 PyPI 與 GitHub。它固定直接依賴，並不是所有間接依賴的完整鎖檔。此安裝程序也會安裝 CLI-Hub，無需再次用 Hub 安裝相同 CLI。
 

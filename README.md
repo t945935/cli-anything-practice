@@ -4,6 +4,8 @@
 
 本專案是獨立的教學配套，並非 HKUDS 官方專案。目前提供第 3～17 章的讀者練習與參考資料。所有報名資料皆為虛構的教學資料。
 
+《讓 AI 幫你操作軟體：CLI-Anything 工作自動化實戰》2026 年 10 月版使用 Git tag `book-2026-10`。該版本說明與測試摘要見 [docs/book-2026-10.md](docs/book-2026-10.md)；依書跟做時請固定在此 tag，不要混用 `main` 的後續變更。
+
 | 章節 | 練習 | 學習重點 |
 | --- | --- | --- |
 | [第 3 章](ch03/README.md) | 使用 CLI-Hub 完成第一個任務 | 查找工具、建立 Writer 文件、匯出並驗證 PDF |
@@ -25,7 +27,8 @@
 先閱讀 [安裝指南](docs/installation.md)，在 Ubuntu／WSL 的 Bash 終端機準備環境。以下指令都從儲存庫根目錄執行：
 
 ```bash
-git clone https://github.com/t945935/cli-anything-practice.git
+git clone --branch book-2026-10 --single-branch \
+  https://github.com/t945935/cli-anything-practice.git
 cd cli-anything-practice
 # 先完成安裝指南中的系統套件、虛擬環境與 Python 套件安裝
 source .venv/bin/activate
@@ -38,7 +41,7 @@ python ch03/run-example.py output/ch03
 
 - 安裝 CLI 套件不會自動安裝 LibreOffice。第 3～5、7～9、11 章的實際文件建置需要可執行的 LibreOffice。
 - 第 4 章附有一份刻意損壞的 ODT；預期結果包含一次失敗。
-- 第 5 章附有待查資料；結束碼 `3` 代表報表已完成，但還需要確認資料。
+- 第 5 章附有待查資料；正式產報表回傳 `3` 代表報表已完成但仍需確認資料；`--check-only` 回傳 `3` 則只代表檢查完成，尚未產生報表。
 - 第 6 章使用 GIMP CLI 的 **Pillow 後端**；本案例沒有啟動 GIMP 桌面程式。
 - 自動檢查通過後仍需查看版面或圖片內容。[已知限制](docs/limitations.md) 說明驗證範圍。
 

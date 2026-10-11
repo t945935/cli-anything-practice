@@ -137,7 +137,7 @@ def main(argv=None):
                   '失敗或被阻擋的階段可能沒有完整成果。此流程未設定排程，也不會發布或寄送檔案。', '']
         (output / 'weekly.md').write_text('\n'.join(lines), encoding='utf-8')
 
-    def stage(name, command, evaluate):
+    def stage(name, command, evaluate, pass_result=False):
         report['current_step'] = name
         save()
         row = {'name': name, 'status': 'failed'}
@@ -146,15 +146,23 @@ def main(argv=None):
             row['exit_code'] = result.returncode
             write_json(output / 'logs' / (name + '.json'), {'args': list(map(str, command)), 'returncode': result.returncode,
                                                          'stdout': result.stdout, 'stderr': result.stderr})
-            row['status'], row['detail'] = evaluate(result.returncode)
+            evaluator_input = result if pass_result else result.returncode
+            row['status'], row['detail'] = evaluate(evaluator_input)
         except Exception as error:
             row['detail'] = f'{type(error).__name__}: {error}'
         report['stages'].append(row)
         save()
         return row['status']
 
-    def documents_result(code):
-        result = read_json(output / 'documents/report.json')
+    def require_report(path, result, label):
+        if not path.is_file():
+            detail = (result.stderr or result.stdout or '子命令沒有提供診斷訊息').strip()
+            raise RuntimeError(f'{label}子命令結束碼 {result.returncode}，但未產生報告 {path.name}；診斷：{detail}')
+        return read_json(path)
+
+    def documents_result(command_result):
+        code = command_result.returncode
+        result = require_report(output / 'documents/report.json', command_result, '文件轉檔')
         counts, rows = result['counts'], result['files']
         status = document_status(code, counts)
         if not isinstance(rows, list) or len(rows) != len(documents):
@@ -170,9 +178,10 @@ def main(argv=None):
                     raise ValueError('通過的文件缺少 PDF 或來源驗證')
         return status, counts
 
-    def registrations_result(code):
-        summary = read_json(output / 'registrations/summary.json')
-        verification = read_json(output / 'registrations/verification.json')
+    def registrations_result(command_result):
+        code = command_result.returncode
+        summary = require_report(output / 'registrations/summary.json', command_result, '報名資料')
+        verification = require_report(output / 'registrations/verification.json', command_result, '報名資料')
         status = registration_status(code, summary, verification)
         if summary['input_sha256'] != expected_snapshots['registrations.csv']:
             raise ValueError('報名報表未對應本次輸入')
@@ -200,8 +209,8 @@ def main(argv=None):
         return status, counts
 
     python = sys.executable
-    stage('documents', [python, ROOT / 'ch04/batch_convert.py', '--input', inputs / 'documents', '--output', output / 'documents'], documents_result)
-    stage('registrations', [python, ROOT / 'ch05/build_report.py', '--input', inputs / 'registrations.csv', '--output', output / 'registrations'], registrations_result)
+    stage('documents', [python, ROOT / 'ch04/batch_convert.py', '--input', inputs / 'documents', '--output', output / 'documents'], documents_result, pass_result=True)
+    stage('registrations', [python, ROOT / 'ch05/build_report.py', '--input', inputs / 'registrations.csv', '--output', output / 'registrations'], registrations_result, pass_result=True)
     lesson_status = stage('lesson_job', [python, ROOT / 'ch09/run_job.py', 'start', '--input', inputs / 'lesson.json',
                                        '--workspace', ROOT, '--job-dir', output / 'lesson-job'], lesson_result)
     if lesson_status == 'passed':
