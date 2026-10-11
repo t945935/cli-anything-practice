@@ -1,0 +1,137 @@
+name: Reader practice CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/practice-ci.yml'
+      - '**/*.py'
+      - '**/pyproject.toml'
+      - 'ch17/requirements-ci.txt'
+      - 'ch05/registrations.csv'
+      - 'ch07/lesson.json'
+      - 'ch14/textmeter/**'
+      - 'ch16/INSTALL.md'
+      - 'reference/**'
+      - '!reference/*.md'
+  pull_request:
+    paths:
+      - '.github/workflows/practice-ci.yml'
+      - '**/*.py'
+      - '**/pyproject.toml'
+      - 'ch17/requirements-ci.txt'
+      - 'ch05/registrations.csv'
+      - 'ch07/lesson.json'
+      - 'ch14/textmeter/**'
+      - 'ch16/INSTALL.md'
+      - 'reference/**'
+      - '!reference/*.md'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: practice-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  tests:
+    name: Tests Python ${{ matrix.python }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.12', '3.13']
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Prepare log folder
+        run: mkdir -p output/ci
+      - name: Install test dependencies
+        run: python -m pip install -r ch17/requirements-ci.txt 2>&1 | tee output/ci/install-tests.log
+      - name: Record environment
+        run: |
+          python --version > output/ci/python.txt
+          python -m pip freeze > output/ci/packages.txt
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v 2>&1 | tee output/ci/unit-tests.log
+      - name: Save test evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: tests-python-${{ matrix.python }}-${{ github.run_attempt }}
+          path: output/ci/
+          if-no-files-found: warn
+          retention-days: 14
+
+  handoff:
+    name: Build and verify handoff
+    needs: tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Prepare log folder
+        run: mkdir -p output/ci/wheels
+      - name: Build wheels
+        run: |
+          python -m pip wheel --no-deps --wheel-dir output/ci/wheels \
+            ./ch14/textmeter ./ch15/reference_adapter 2>&1 | tee output/ci/build.log
+      - name: Assemble handoff bundle
+        run: |
+          python ch16/make_bundle.py --wheels output/ci/wheels \
+            --output output/ci/bundle 2>&1 | tee output/ci/assemble.log
+      - name: Install copied bundle in a fresh environment
+        run: |
+          cp -R output/ci/bundle "$RUNNER_TEMP/textmeter-handoff"
+          python -m venv "$RUNNER_TEMP/textmeter-clean"
+          cd "$RUNNER_TEMP/textmeter-handoff"
+          sha256sum -c SHA256SUMS 2>&1 | tee "$GITHUB_WORKSPACE/output/ci/checksums.log"
+          "$RUNNER_TEMP/textmeter-clean/bin/python" -m pip --isolated install \
+            --no-index --find-links ./wheels --only-binary=:all: --require-hashes \
+            -r requirements.txt 2>&1 | tee "$GITHUB_WORKSPACE/output/ci/install-bundle.log"
+          "$RUNNER_TEMP/textmeter-clean/bin/python" -m pip check \
+            2>&1 | tee "$GITHUB_WORKSPACE/output/ci/pip-check.log"
+          "$RUNNER_TEMP/textmeter-clean/bin/python" -I -c \
+            "import sys,textmeter,textmeter_reference; assert textmeter.__file__.startswith(sys.prefix); assert textmeter_reference.__file__.startswith(sys.prefix); print(sys.version)" \
+            2>&1 | tee "$GITHUB_WORKSPACE/output/ci/installed-imports.log"
+      - name: Verify installed command
+        run: |
+          cd "$RUNNER_TEMP/textmeter-handoff"
+          "$RUNNER_TEMP/textmeter-clean/bin/python" check_cli.py \
+            --cli "$RUNNER_TEMP/textmeter-clean/bin/practice-textmeter" \
+            --output "$GITHUB_WORKSPACE/output/ci/acceptance" \
+            2>&1 | tee "$GITHUB_WORKSPACE/output/ci/acceptance.log"
+      - name: Save handoff evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: handoff-evidence-${{ github.run_attempt }}
+          path: |
+            output/ci/*.log
+            output/ci/acceptance/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Save verified bundle
+        if: success()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: textmeter-handoff-${{ github.sha }}-${{ github.run_attempt }}
+          path: output/ci/bundle/
+          if-no-files-found: error
+          retention-days: 14
