@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cli-anything-practice-lesson-kit"
+version = "0.1.0"
+description = "CLI-Anything 工作自動化實戰：第八章教材命令列練習"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["defusedxml==0.7.1"]
+
+[project.scripts]
+lesson-kit = "lesson_kit.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
