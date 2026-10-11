@@ -31,4 +31,10 @@
 
 ## 雲端延伸驗證
 
-本次新增 generated job，預定在 Python 3.12／3.13 執行生成 CLI 的測試與外部契約。實際 run 完成後補上來源 commit、執行連結及結果；不得把既有 ch17 成功紀錄當作新生成工具的驗證。
+[實際 run 38107985352](https://github.com/t945935/cli-anything-practice/actions/runs/38107985352)，來源 `865bfb129c984c2c58ea41901bf12062ab23dc6f`，整體 success。已下載 artifacts 核對：
+
+- Python 3.12／3.13：各 62 項基本測試通過。
+- Python 3.12／3.13 生成 CLI：各 14 項 pytest 通過、16 個外部契約案例通過。
+- 手寫參考介面：交接安裝與 16 項契約通過；下載包 SHA256SUMS 全部符合。
+
+五個 jobs 均成功。Artifacts 保留 14 天，不能保證永久可下載。這輪沒有建立刻意失敗的雲端 run；本機故障練習仍見第十五章。
