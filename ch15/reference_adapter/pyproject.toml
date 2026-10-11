@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cli-anything-practice-textmeter-reference"
+version = "0.1.0"
+description = "第十五章驗收器的教學參考介面，非 CLI-Anything 生成成果"
+requires-python = ">=3.10"
+dependencies = ["cli-anything-practice-textmeter-core==0.1.0"]
+
+[project.scripts]
+practice-textmeter = "textmeter_reference:main"
+
+[tool.setuptools]
+py-modules = ["textmeter_reference"]

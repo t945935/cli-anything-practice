@@ -16,6 +16,7 @@
 | [12](../ch12/README.md) | `python ch12/toolbox.py` | 本機環境 → 盤點及差異報告 | 差異不等於功能相容性判斷 |
 | [13](../ch13/README.md) | 任務卡，沿用第 8～10 章工具 | 教材需求 → 有證據的 Agent 交付說明 | 文字規則不是權限隔離；仍需人工檢視 |
 | [14](../ch14/README.md) | `python ch14/prepare_lab.py` | 起始 Python 專案 → 生成練習副本 | 附帶後端與驗收要求；CLI 由讀者生成及驗證 |
+| [15](../ch15/README.md) | `python ch15/check_cli.py` | 已安裝命令 → 十六個案例及驗收報告 | 只測 TextMeter 契約，不是完整 harness 或安全驗證 |
 
 ## 統一操作習慣
 
