@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+# 本機安裝紀錄與舊版壓縮包
+/activate.sh
+/environment.json
+/requirements-installed.txt
+/*.zip
+# 練習成果、操作紀錄與試驗；可分享的成品放在 reference/
+/output/
+/ch*/output/
+/ch*/results/
+/ch*/verified/
+/ch*/drafts/
+/ch05/formula-probe/

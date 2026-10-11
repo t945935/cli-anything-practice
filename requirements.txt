@@ -1,0 +1,6 @@
+# 固定本書驗證過的工具來源；原生 LibreOffice 需另外安裝。
+cli-anything-hub==0.4.1
+cli-anything-libreoffice @ git+https://github.com/HKUDS/CLI-Anything.git@34f519533bc175d2fe287ab8316b0dd99bb9cc43#subdirectory=libreoffice/agent-harness
+cli-anything-gimp @ git+https://github.com/HKUDS/CLI-Anything.git@34f519533bc175d2fe287ab8316b0dd99bb9cc43#subdirectory=gimp/agent-harness
+Pillow==12.3.0
+defusedxml==0.7.1
