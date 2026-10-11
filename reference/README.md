@@ -17,5 +17,6 @@
 | [agent-handoff.md](agent-handoff.md) | 第 13 章 Agent 任務交付範例與錯誤副本對照 |
 | [cli-contract-checks.md](cli-contract-checks.md) | 第 15 章參考 CLI 的正常與故障驗收對照 |
 | [release-handoff.md](release-handoff.md) | 第 16 章新環境安裝與故障副本拒絕的交接演練摘要 |
+| [ci-verification.md](ci-verification.md) | 第 17 章 GitHub Actions 雲端驗證摘要與執行連結 |
 
 PDF 與試算表可能因建立時間、字型與軟體版本而有不同位元組內容。請比較文字、數值、型別、尺寸及版面，不要要求輸出雜湊與參考成品相同。

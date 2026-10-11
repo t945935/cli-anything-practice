@@ -18,6 +18,7 @@
 | [14](../ch14/README.md) | `python ch14/prepare_lab.py` | 起始 Python 專案 → 生成練習副本 | 附帶後端與驗收要求；CLI 由讀者生成及驗證 |
 | [15](../ch15/README.md) | `python ch15/check_cli.py` | 已安裝命令 → 十六個案例及驗收報告 | 只測 TextMeter 契約，不是完整 harness 或安全驗證 |
 | [16](../ch16/README.md) | `python ch16/make_bundle.py` | 指定 wheel → 可交接資料夾 | 固定兩個教學套件，非通用依賴打包器 |
+| [17](../ch17/README.md) | GitHub Actions：Reader practice CI | 修改／手動觸發 → 測試及交接 artifacts | Ubuntu 與指定 Python 版本，不含原生辦公軟體實作驗收 |
 
 ## 統一操作習慣
 
