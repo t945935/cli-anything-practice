@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "label": "教學團隊每週例行作業",
+  "documents": "../ch04/samples",
+  "registrations": "../ch05/registrations.csv",
+  "lesson": "../ch07/lesson.json"
+}
