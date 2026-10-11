@@ -20,3 +20,5 @@
 | [ci-verification.md](ci-verification.md) | 第 17 章 GitHub Actions 雲端驗證摘要與執行連結 |
 
 PDF 與試算表可能因建立時間、字型與軟體版本而有不同位元組內容。請比較文字、數值、型別、尺寸及版面，不要要求輸出雜湊與參考成品相同。
+
+[出版前演練紀錄](publication-rehearsal.md) 整理新環境、生成介面與後續 CI。ch04-report.json、ch05-verification.json、ch06-report.json 為本輪實際報告，分享時將個人絕對路徑換成 <reader-repo>／<temporary-path>；ch04-meeting.pdf 是其中一份實際轉檔。這些是參考結果，不是可直接照用的本機路徑。

@@ -106,3 +106,7 @@ Fork 的 Actions 可能需由擁有者啟用；PR 執行也受 repository 政策
 - [GitHub Python 建置與測試](https://docs.github.com/en/actions/tutorials/build-and-test-code/python)
 - [Workflow 語法](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)
 - [保存 workflow artifacts](https://docs.github.com/en/actions/tutorials/store-and-share-data)
+
+## 整編時新增的生成 CLI 檢查
+
+workflow 另有 generated job，分別在 Python 3.12／3.13 安裝 ch14/generated，從 checkout 外執行 14 項 pytest 與 16 個契約案例，保存獨立 artifacts。它與手寫參考介面的 handoff job 分開；原交接包仍只有第十六章指定的兩個套件。新增路徑 ch14/generated/** 會觸發 CI。最新實測摘要見 [出版前演練](../reference/publication-rehearsal.md)。

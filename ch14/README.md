@@ -2,7 +2,7 @@
 
 本章提供可供生成工具分析的 TextMeter 起始專案、生成任務與驗收清單。它是一個沒有 CLI 的純文字統計後端，用於練習將既有 Python API 包裝成 Agent 可呼叫的命令。
 
-**目前附帶並實測的是起始後端、素材與練習副本建立程式；不附帶聲稱已由官方插件生成完成的 harness。** 生成、安裝及端到端驗收是本章讀者的實作內容。小型 Python API 的練習不代表已驗證 GUI 軟體整合。
+本章同時附帶 [實際生成版本](generated/README.md)，由 Codex 依固定版本 CLI-Anything 官方方法完成，已做 wheel 安裝、14 項 pytest 與 16 個外部契約案例。可先自行生成，再和完成版本比較；小型 Python API 練習不代表已驗證 GUI 軟體整合。
 
 ## 準備練習副本
 
@@ -13,7 +13,7 @@ python ch14/prepare_lab.py --output output/ch14-lab
 python -m unittest discover -s tests -p 'test_textmeter.py' -v
 ```
 
-第二個命令只執行本章八項起始測試，沒有生成 CLI。全專案測試共 50 項通過。複製不包含快取或先前生成的 agent-harness，重跑同一目的地會拒絕覆寫。
+第二個命令只執行本章八項起始測試，沒有生成 CLI。全專案基本測試與生成介面測試分開執行。複製不包含快取或先前生成的 agent-harness，重跑同一目的地會拒絕覆寫。
 
 ```text
 output/ch14-lab/textmeter/
@@ -98,7 +98,7 @@ cli-anything-textmeter --json export "output/ch14-lab/textmeter/samples/中文 �
 
 ## 實測範圍與參考
 
-本書驗證了八項起始測試、後端套件的本機 wheel 安裝，以及從專案以外位置匯入後端並取得正確統計。未執行 Claude Code 插件生成；沒有為生成後的 CLI 填入測試通過數字。官方入口依 2026-10-11 查閱的文件記錄，日後使用請核對安裝版本。
+本書驗證了八項起始測試、後端套件的本機 wheel 安裝，以及從專案以外位置匯入後端並取得正確統計。本次由 Codex 讀取官方方法生成，沒有執行 Claude Code slash command。生成與 validate 的實際範圍見 generated/README.md 與 VALIDATION.md。官方入口依 2026-10-11 查閱的文件記錄，日後使用請核對安裝版本。
 
 - [官方安裝與使用說明](https://github.com/HKUDS/CLI-Anything#-quick-start)
 - [build 命令規格](https://github.com/HKUDS/CLI-Anything/blob/main/cli-anything-plugin/commands/cli-anything.md)

@@ -1,0 +1,24 @@
+{
+  "method": "Codex followed upstream codex-skill and build specification in the active authoring conversation; no nested agent or slash-command execution",
+  "method_commit": "34f519533bc175d2fe287ab8316b0dd99bb9cc43",
+  "agent": "Codex",
+  "agent_version": "hosted runtime; no independently queryable version",
+  "date": "2026-10-11",
+  "backend_unchanged": true,
+  "backend_sha256": {
+    "README.md": "06b6babbb7918bcb2a4ea96721974dc3cb2e218c42e4e69709e3a3b1c08ac988",
+    "pyproject.toml": "baa23bf7d4d9f8d5d073269315b03322105fc31b855b545347138aa454d84409",
+    "textmeter.py": "81740744cbbb167126fcde79ec56ce97c5bcf2680c769b2a89cda866dac32bfe",
+    "samples/中文 範例.txt": "d439020a96e51e5474983fad6900229eb3003ae75178f1dcb839acdc4b4cbc56",
+    "samples/expected.json": "7dc882d3c748e87e781697fcf3eea0796bd4c5873224d4724df34b64402aee9b"
+  },
+  "generation_tests": 14,
+  "contract_checks": 16,
+  "skill_generator_correction": [
+    "removed nonexistent project new/info",
+    "removed undo/redo claims",
+    "replaced unverified PyPI install with local install",
+    "corrected JSON error channel to stdout"
+  ],
+  "full_gui_harness_validation": "not_passed; see VALIDATION.md"
+}

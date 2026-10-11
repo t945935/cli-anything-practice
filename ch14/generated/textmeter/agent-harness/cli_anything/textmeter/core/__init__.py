@@ -1,0 +1,1 @@
+"""Stateless report operations."""

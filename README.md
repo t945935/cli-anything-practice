@@ -58,3 +58,7 @@ python -m unittest discover -s tests -v
 這組測試涵蓋資料規則、圖片幾何、命令介面、工作狀態、成品檢查與環境比較，不需要啟動 LibreOffice。完整操作與成品驗證請依各章 README 執行。
 
 若要回報問題，請附上作業系統、Python 與 CLI 版本、執行命令、結束碼及錯誤訊息；分享 `commands.json` 等紀錄前請移除個人路徑及私人文件內容。
+
+## 整編與重現紀錄
+
+第十四章已附 [實際生成的 TextMeter CLI](ch14/generated/README.md)，包含來源分析、規格差異、14 項 pytest 與 16 個獨立契約案例。前面章節已在新的 Python 3.12 環境與乾淨 checkout 重跑代表性流程，見 [出版前演練紀錄](reference/publication-rehearsal.md)。完整書稿與出版檔保存在作者書籍目錄，這個 repo 提供讀者練習。

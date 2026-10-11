@@ -1,0 +1,404 @@
+{
+  "input": "<reader-repo>/output/book-clean-checkout/ch06/calibration.png",
+  "input_sha256": "962cc69c0bb7fc8154f2f7db0b3b24ef44ad43358e023fa2f5f9b3bdcb9206e0",
+  "source": {
+    "width": 1600,
+    "height": 1000,
+    "mode": "RGB",
+    "format": "PNG",
+    "frames": 1,
+    "orientation": 1,
+    "icc_profile": false,
+    "transparency": false,
+    "bytes": 18308
+  },
+  "versions": {
+    "cli-anything-gimp": "1.0.0",
+    "Pillow": "12.3.0"
+  },
+  "results": [
+    {
+      "name": "web",
+      "size": [
+        800,
+        500
+      ],
+      "preset": "jpeg-medium",
+      "file": "web.jpg",
+      "operations": [
+        [
+          "canvas",
+          "scale",
+          "--width",
+          800,
+          "--height",
+          500
+        ]
+      ],
+      "actual": {
+        "width": 800,
+        "height": 500,
+        "mode": "RGB",
+        "format": "JPEG",
+        "frames": 1,
+        "orientation": 1,
+        "icc_profile": false,
+        "transparency": false,
+        "bytes": 19056
+      },
+      "backend": "pillow",
+      "status": "passed_basic_checks"
+    },
+    {
+      "name": "square",
+      "size": [
+        600,
+        600
+      ],
+      "preset": "png",
+      "file": "square.png",
+      "crop_box": [
+        300,
+        0,
+        1300,
+        1000
+      ],
+      "operations": [
+        [
+          "canvas",
+          "crop",
+          "--left",
+          300,
+          "--top",
+          0,
+          "--right",
+          1300,
+          "--bottom",
+          1000
+        ],
+        [
+          "canvas",
+          "scale",
+          "--width",
+          600,
+          "--height",
+          600
+        ]
+      ],
+      "actual": {
+        "width": 600,
+        "height": 600,
+        "mode": "RGBA",
+        "format": "PNG",
+        "frames": 1,
+        "orientation": 1,
+        "icc_profile": false,
+        "transparency": false,
+        "bytes": 15848
+      },
+      "backend": "pillow",
+      "status": "passed_basic_checks"
+    },
+    {
+      "name": "padded",
+      "size": [
+        400,
+        400
+      ],
+      "content_size": [
+        400,
+        250
+      ],
+      "preset": "png",
+      "file": "padded.png",
+      "operations": [
+        [
+          "canvas",
+          "scale",
+          "--width",
+          400,
+          "--height",
+          250
+        ],
+        [
+          "canvas",
+          "resize",
+          "--width",
+          400,
+          "--height",
+          400,
+          "--anchor",
+          "center"
+        ]
+      ],
+      "actual": {
+        "width": 400,
+        "height": 400,
+        "mode": "RGBA",
+        "format": "PNG",
+        "frames": 1,
+        "orientation": 1,
+        "icc_profile": false,
+        "transparency": false,
+        "bytes": 8495
+      },
+      "backend": "pillow",
+      "status": "passed_basic_checks"
+    }
+  ],
+  "commands": [
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "project",
+        "new",
+        "--width",
+        "1600",
+        "--height",
+        "1000",
+        "--mode",
+        "RGB",
+        "--background",
+        "#ffffff",
+        "--output",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/web.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"name\": \"untitled\",\n  \"version\": \"1.0\",\n  \"canvas\": {\n    \"width\": 1600,\n    \"height\": 1000,\n    \"color_mode\": \"RGB\",\n    \"background\": \"#ffffff\",\n    \"dpi\": 72\n  },\n  \"layer_count\": 0,\n  \"layers\": [],\n  \"metadata\": {\n    \"created\": \"2026-10-11T11:12:10.671858\",\n    \"modified\": \"2026-10-11T11:12:10.671888\",\n    \"software\": \"gimp-cli 1.0\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "--project",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/web.json",
+        "layer",
+        "add-from-file",
+        "<reader-repo>/output/book-clean-checkout/ch06/calibration.png",
+        "--name",
+        "Source"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"id\": 0,\n  \"name\": \"Source\",\n  \"type\": \"image\",\n  \"width\": 1600,\n  \"height\": 1000,\n  \"visible\": true,\n  \"opacity\": 1.0,\n  \"blend_mode\": \"normal\",\n  \"offset_x\": 0,\n  \"offset_y\": 0,\n  \"filters\": [],\n  \"source\": \"<reader-repo>/output/book-clean-checkout/ch06/calibration.png\",\n  \"fill\": null\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "--project",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/web.json",
+        "canvas",
+        "scale",
+        "--width",
+        "800",
+        "--height",
+        "500"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"old_size\": \"1600x1000\",\n  \"new_size\": \"800x500\",\n  \"scale\": \"(0.500, 0.500)\",\n  \"resample\": \"lanczos\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "--project",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/web.json",
+        "export",
+        "render",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/web.jpg",
+        "--preset",
+        "jpeg-medium"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"output\": \"<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/web.jpg\",\n  \"format\": \"JPEG\",\n  \"size\": \"800x500\",\n  \"file_size\": 19056,\n  \"file_size_human\": \"18.6 KB\",\n  \"preset\": \"jpeg-medium\",\n  \"method\": \"pillow\",\n  \"layers_rendered\": 1\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "project",
+        "new",
+        "--width",
+        "1600",
+        "--height",
+        "1000",
+        "--mode",
+        "RGB",
+        "--background",
+        "#ffffff",
+        "--output",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/square.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"name\": \"untitled\",\n  \"version\": \"1.0\",\n  \"canvas\": {\n    \"width\": 1600,\n    \"height\": 1000,\n    \"color_mode\": \"RGB\",\n    \"background\": \"#ffffff\",\n    \"dpi\": 72\n  },\n  \"layer_count\": 0,\n  \"layers\": [],\n  \"metadata\": {\n    \"created\": \"2026-10-11T11:12:10.890996\",\n    \"modified\": \"2026-10-11T11:12:10.891009\",\n    \"software\": \"gimp-cli 1.0\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "--project",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/square.json",
+        "layer",
+        "add-from-file",
+        "<reader-repo>/output/book-clean-checkout/ch06/calibration.png",
+        "--name",
+        "Source"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"id\": 0,\n  \"name\": \"Source\",\n  \"type\": \"image\",\n  \"width\": 1600,\n  \"height\": 1000,\n  \"visible\": true,\n  \"opacity\": 1.0,\n  \"blend_mode\": \"normal\",\n  \"offset_x\": 0,\n  \"offset_y\": 0,\n  \"filters\": [],\n  \"source\": \"<reader-repo>/output/book-clean-checkout/ch06/calibration.png\",\n  \"fill\": null\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "--project",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/square.json",
+        "canvas",
+        "crop",
+        "--left",
+        "300",
+        "--top",
+        "0",
+        "--right",
+        "1300",
+        "--bottom",
+        "1000"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"old_size\": \"1600x1000\",\n  \"new_size\": \"1000x1000\",\n  \"crop_region\": \"(300,0)-(1300,1000)\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "--project",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/square.json",
+        "canvas",
+        "scale",
+        "--width",
+        "600",
+        "--height",
+        "600"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"old_size\": \"1000x1000\",\n  \"new_size\": \"600x600\",\n  \"scale\": \"(0.600, 0.600)\",\n  \"resample\": \"lanczos\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "--project",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/square.json",
+        "export",
+        "render",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/square.png",
+        "--preset",
+        "png"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"output\": \"<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/square.png\",\n  \"format\": \"PNG\",\n  \"size\": \"600x600\",\n  \"file_size\": 15848,\n  \"file_size_human\": \"15.5 KB\",\n  \"preset\": \"png\",\n  \"method\": \"pillow\",\n  \"layers_rendered\": 1\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "project",
+        "new",
+        "--width",
+        "1600",
+        "--height",
+        "1000",
+        "--mode",
+        "RGB",
+        "--background",
+        "#ffffff",
+        "--output",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/padded.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"name\": \"untitled\",\n  \"version\": \"1.0\",\n  \"canvas\": {\n    \"width\": 1600,\n    \"height\": 1000,\n    \"color_mode\": \"RGB\",\n    \"background\": \"#ffffff\",\n    \"dpi\": 72\n  },\n  \"layer_count\": 0,\n  \"layers\": [],\n  \"metadata\": {\n    \"created\": \"2026-10-11T11:12:11.141112\",\n    \"modified\": \"2026-10-11T11:12:11.141125\",\n    \"software\": \"gimp-cli 1.0\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "--project",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/padded.json",
+        "layer",
+        "add-from-file",
+        "<reader-repo>/output/book-clean-checkout/ch06/calibration.png",
+        "--name",
+        "Source"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"id\": 0,\n  \"name\": \"Source\",\n  \"type\": \"image\",\n  \"width\": 1600,\n  \"height\": 1000,\n  \"visible\": true,\n  \"opacity\": 1.0,\n  \"blend_mode\": \"normal\",\n  \"offset_x\": 0,\n  \"offset_y\": 0,\n  \"filters\": [],\n  \"source\": \"<reader-repo>/output/book-clean-checkout/ch06/calibration.png\",\n  \"fill\": null\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "--project",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/padded.json",
+        "canvas",
+        "scale",
+        "--width",
+        "400",
+        "--height",
+        "250"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"old_size\": \"1600x1000\",\n  \"new_size\": \"400x250\",\n  \"scale\": \"(0.250, 0.250)\",\n  \"resample\": \"lanczos\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "--project",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/padded.json",
+        "canvas",
+        "resize",
+        "--width",
+        "400",
+        "--height",
+        "400",
+        "--anchor",
+        "center"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"old_size\": \"400x250\",\n  \"new_size\": \"400x400\",\n  \"anchor\": \"center\",\n  \"offset_applied\": \"(0, 75)\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "cli-anything-gimp",
+        "--json",
+        "--project",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/projects/padded.json",
+        "export",
+        "render",
+        "<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/padded.png",
+        "--preset",
+        "png"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"output\": \"<reader-repo>/output/book-clean-checkout/output/rehearsal-ch06/padded.png\",\n  \"format\": \"PNG\",\n  \"size\": \"400x400\",\n  \"file_size\": 8495,\n  \"file_size_human\": \"8.3 KB\",\n  \"preset\": \"png\",\n  \"method\": \"pillow\",\n  \"layers_rendered\": 1\n}\n",
+      "stderr": ""
+    }
+  ],
+  "needs_visual_review": true,
+  "source_unchanged": true,
+  "status": "passed_basic_checks"
+}

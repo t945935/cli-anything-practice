@@ -1,0 +1,220 @@
+{
+  "input_dir": "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents",
+  "output_dir": "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents",
+  "files": [
+    {
+      "input": "說明.txt",
+      "status": "skipped",
+      "reason": "非本章支援的普通文件"
+    },
+    {
+      "input": "損壞範例.odt",
+      "status": "failed",
+      "commands": [
+        {
+          "args": [
+            "cli-anything-libreoffice",
+            "document",
+            "import",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/損壞範例.odt",
+            "--output",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/projects/損壞範例.odt.json"
+          ],
+          "exit_code": 1,
+          "stdout": "",
+          "stderr": "Error: Invalid ODF file: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/損壞範例.odt\n"
+        }
+      ],
+      "input_sha256": "ee241e5fb2b476dd80abbfa5b4c0ed22a5299418c04047ef63d2587d7f09f4ac",
+      "error": "Error: Invalid ODF file: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/損壞範例.odt"
+    },
+    {
+      "input": "會議紀錄.docx",
+      "status": "passed_basic_checks",
+      "commands": [
+        {
+          "args": [
+            "cli-anything-libreoffice",
+            "document",
+            "import",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/會議紀錄.docx",
+            "--output",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/projects/會議紀錄.docx.json"
+          ],
+          "exit_code": 0,
+          "stdout": "Imported: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/會議紀錄.docx\nname: 會議紀錄\nversion: 1.0\ntype: writer\nsettings:\n  page_width: 21cm\n  page_height: 29.7cm\n  margin_top: 2cm\n  margin_bottom: 2cm\n  margin_left: 2cm\n  margin_right: 2cm\nmetadata:\n  title: \n  author: \n  description: \n  subject: \n  created: 2026-10-11T09:24:50\n  modified: 2026-10-11T11:12:12.278254\n  software: libreoffice-cli 1.0\n  source_path: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/會議紀錄.docx\n  imported_at: 2026-10-11T11:12:12.277738\n  import_method: libreoffice-headless\n  original_format: docx\nstyle_count: 0\ncontent_count: 2\nsource_path: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/會議紀錄.docx\nproject_path: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/projects/會議紀錄.docx.json\n",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "cli-anything-libreoffice",
+            "--project",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/projects/會議紀錄.docx.json",
+            "export",
+            "render",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/會議紀錄.docx.pdf",
+            "--preset",
+            "pdf"
+          ],
+          "exit_code": 0,
+          "stdout": "Exported to: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/會議紀錄.docx.pdf\naction: convert\noutput: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/會議紀錄.docx.pdf\nformat: pdf\nmethod: libreoffice-headless\nlibreoffice_version: LibreOffice 24.2.7.2 420(Build:2)\nfile_size: 16286\npreset: pdf\nsource_type: writer\n",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "pdfinfo",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/會議紀錄.docx.pdf"
+          ],
+          "exit_code": 0,
+          "stdout": "Creator:         Writer\nProducer:        LibreOffice 24.2\nCreationDate:    Sun Oct 11 11:12:12 2026 CST\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       595.304 x 841.89 pts (A4)\nPage rot:        0\nFile size:       16286 bytes\nOptimized:       no\nPDF version:     1.7\n",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "pdftotext",
+            "-layout",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/會議紀錄.docx.pdf",
+            "-"
+          ],
+          "exit_code": 0,
+          "stdout": "   課程規劃會議修訂版\n決議：新增練習題，並安排週四進行試教。\n\f",
+          "stderr": ""
+        }
+      ],
+      "input_sha256": "74658f382a0ee8e7902720fb4578f55fca624f6e028ad758e83ad0a644210bcf",
+      "pdf_info": "Creator:         Writer\nProducer:        LibreOffice 24.2\nCreationDate:    Sun Oct 11 11:12:12 2026 CST\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       595.304 x 841.89 pts (A4)\nPage rot:        0\nFile size:       16286 bytes\nOptimized:       no\nPDF version:     1.7\n",
+      "pdf": "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/會議紀錄.docx.pdf",
+      "checked_text_blocks": 1,
+      "source_unchanged": true,
+      "needs_visual_review": true,
+      "source_fidelity_verified": false
+    },
+    {
+      "input": "會議紀錄.odt",
+      "status": "passed_basic_checks",
+      "commands": [
+        {
+          "args": [
+            "cli-anything-libreoffice",
+            "document",
+            "import",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/會議紀錄.odt",
+            "--output",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/projects/會議紀錄.odt.json"
+          ],
+          "exit_code": 0,
+          "stdout": "Imported: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/會議紀錄.odt\nname: 會議紀錄\nversion: 1.0\ntype: writer\nsettings:\n  page_width: 21cm\n  page_height: 29.7cm\n  margin_top: 2cm\n  margin_bottom: 2cm\n  margin_left: 2cm\n  margin_right: 2cm\nmetadata:\n  title: \n  author: \n  description: \n  subject: \n  created: 2026-10-11T09:24:50.484645\n  modified: 2026-10-11T11:12:13.018147\n  software: libreoffice-cli 1.0\n  source_path: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/會議紀錄.odt\n  imported_at: 2026-10-11T11:12:13.017979\n  import_method: native-odf\nstyle_count: 0\ncontent_count: 2\nsource_path: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/會議紀錄.odt\nproject_path: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/projects/會議紀錄.odt.json\n",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "cli-anything-libreoffice",
+            "--project",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/projects/會議紀錄.odt.json",
+            "export",
+            "render",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/會議紀錄.odt.pdf",
+            "--preset",
+            "pdf"
+          ],
+          "exit_code": 0,
+          "stdout": "Exported to: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/會議紀錄.odt.pdf\naction: convert\noutput: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/會議紀錄.odt.pdf\nformat: pdf\nmethod: libreoffice-headless\nlibreoffice_version: LibreOffice 24.2.7.2 420(Build:2)\nfile_size: 16652\npreset: pdf\nsource_type: writer\n",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "pdfinfo",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/會議紀錄.odt.pdf"
+          ],
+          "exit_code": 0,
+          "stdout": "Creator:         Writer\nProducer:        LibreOffice 24.2\nCreationDate:    Sun Oct 11 11:12:13 2026 CST\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       595.304 x 841.89 pts (A4)\nPage rot:        0\nFile size:       16652 bytes\nOptimized:       no\nPDF version:     1.7\n",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "pdftotext",
+            "-layout",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/會議紀錄.odt.pdf",
+            "-"
+          ],
+          "exit_code": 0,
+          "stdout": "課程規劃會議\n決議：下週三完成教材初稿，週五檢查圖片與參考資料。\n\f",
+          "stderr": ""
+        }
+      ],
+      "input_sha256": "df6c806e9cf6662b6abb136fbcc933ba08faa61e0264f5b2e0f5994d6a003273",
+      "pdf_info": "Creator:         Writer\nProducer:        LibreOffice 24.2\nCreationDate:    Sun Oct 11 11:12:13 2026 CST\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       595.304 x 841.89 pts (A4)\nPage rot:        0\nFile size:       16652 bytes\nOptimized:       no\nPDF version:     1.7\n",
+      "pdf": "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/會議紀錄.odt.pdf",
+      "checked_text_blocks": 2,
+      "source_unchanged": true,
+      "needs_visual_review": true,
+      "source_fidelity_verified": false
+    },
+    {
+      "input": "每週工作 報告.docx",
+      "status": "passed_basic_checks",
+      "commands": [
+        {
+          "args": [
+            "cli-anything-libreoffice",
+            "document",
+            "import",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/每週工作 報告.docx",
+            "--output",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/projects/每週工作 報告.docx.json"
+          ],
+          "exit_code": 0,
+          "stdout": "Imported: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/每週工作 報告.docx\nname: 每週工作 報告\nversion: 1.0\ntype: writer\nsettings:\n  page_width: 21cm\n  page_height: 29.7cm\n  margin_top: 2cm\n  margin_bottom: 2cm\n  margin_left: 2cm\n  margin_right: 2cm\nmetadata:\n  title: \n  author: \n  description: \n  subject: \n  created: 2026-10-11T09:24:51\n  modified: 2026-10-11T11:12:14.432195\n  software: libreoffice-cli 1.0\n  source_path: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/每週工作 報告.docx\n  imported_at: 2026-10-11T11:12:14.431798\n  import_method: libreoffice-headless\n  original_format: docx\nstyle_count: 0\ncontent_count: 2\nsource_path: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/inputs/documents/每週工作 報告.docx\nproject_path: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/projects/每週工作 報告.docx.json\n",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "cli-anything-libreoffice",
+            "--project",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/projects/每週工作 報告.docx.json",
+            "export",
+            "render",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/每週工作 報告.docx.pdf",
+            "--preset",
+            "pdf"
+          ],
+          "exit_code": 0,
+          "stdout": "Exported to: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/每週工作 報告.docx.pdf\naction: convert\noutput: <reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/每週工作 報告.docx.pdf\nformat: pdf\nmethod: libreoffice-headless\nlibreoffice_version: LibreOffice 24.2.7.2 420(Build:2)\nfile_size: 15980\npreset: pdf\nsource_type: writer\n",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "pdfinfo",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/每週工作 報告.docx.pdf"
+          ],
+          "exit_code": 0,
+          "stdout": "Creator:         Writer\nProducer:        LibreOffice 24.2\nCreationDate:    Sun Oct 11 11:12:15 2026 CST\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       595.304 x 841.89 pts (A4)\nPage rot:        0\nFile size:       15980 bytes\nOptimized:       no\nPDF version:     1.7\n",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "pdftotext",
+            "-layout",
+            "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/每週工作 報告.docx.pdf",
+            "-"
+          ],
+          "exit_code": 0,
+          "stdout": "   本週工作報告\n完成項目：整理文件、更新課程圖片，以及確認電子書目錄。\n\f",
+          "stderr": ""
+        }
+      ],
+      "input_sha256": "c4118ca41d94273c8bde1436406d504428a8e061d958693a06b7a8a059dcd36c",
+      "pdf_info": "Creator:         Writer\nProducer:        LibreOffice 24.2\nCreationDate:    Sun Oct 11 11:12:15 2026 CST\nCustom Metadata: no\nMetadata Stream: no\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       595.304 x 841.89 pts (A4)\nPage rot:        0\nFile size:       15980 bytes\nOptimized:       no\nPDF version:     1.7\n",
+      "pdf": "<reader-repo>/output/book-clean-checkout/output/rehearsal-weekly/documents/pdf/每週工作 報告.docx.pdf",
+      "checked_text_blocks": 1,
+      "source_unchanged": true,
+      "needs_visual_review": true,
+      "source_fidelity_verified": false
+    }
+  ],
+  "counts": {
+    "passed_basic_checks": 3,
+    "failed": 1,
+    "skipped": 1
+  }
+}

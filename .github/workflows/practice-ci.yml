@@ -12,6 +12,7 @@ on:
       - 'ch05/registrations.csv'
       - 'ch07/lesson.json'
       - 'ch14/textmeter/**'
+      - 'ch14/generated/**'
       - 'ch16/INSTALL.md'
       - 'reference/**'
       - '!reference/*.md'
@@ -24,6 +25,7 @@ on:
       - 'ch05/registrations.csv'
       - 'ch07/lesson.json'
       - 'ch14/textmeter/**'
+      - 'ch14/generated/**'
       - 'ch16/INSTALL.md'
       - 'reference/**'
       - '!reference/*.md'
@@ -71,6 +73,48 @@ jobs:
         with:
           name: tests-python-${{ matrix.python }}-${{ github.run_attempt }}
           path: output/ci/
+          if-no-files-found: warn
+          retention-days: 14
+
+  generated:
+    name: Generated CLI Python ${{ matrix.python }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.12', '3.13']
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install generated harness and test dependencies
+        run: |
+          mkdir -p output/generated-ci
+          python -m pip install ./ch14/textmeter ./ch14/generated/textmeter/agent-harness \
+            -r ch14/generated/requirements-test.txt 2>&1 | tee output/generated-ci/install.log
+          python -m pip check 2>&1 | tee output/generated-ci/pip-check.log
+          python --version > output/generated-ci/python.txt
+          python -m pip freeze > output/generated-ci/packages.txt
+      - name: Verify installed code outside checkout
+        run: |
+          cd "$RUNNER_TEMP"
+          python -I -c "import sys,textmeter,cli_anything.textmeter; assert textmeter.__file__.startswith(sys.prefix); assert cli_anything.textmeter.__file__.startswith(sys.prefix)"
+          CLI_ANYTHING_FORCE_INSTALLED=1 python -m pytest \
+            "$GITHUB_WORKSPACE/ch14/generated/textmeter/agent-harness/cli_anything/textmeter/tests" \
+            -v -s --tb=short 2>&1 | tee "$GITHUB_WORKSPACE/output/generated-ci/pytest.log"
+          python "$GITHUB_WORKSPACE/ch15/check_cli.py" --cli cli-anything-textmeter \
+            --output "$GITHUB_WORKSPACE/output/generated-ci/contract" \
+            2>&1 | tee "$GITHUB_WORKSPACE/output/generated-ci/contract.log"
+      - name: Save generated CLI evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: generated-cli-python-${{ matrix.python }}-${{ github.run_attempt }}
+          path: output/generated-ci/
           if-no-files-found: warn
           retention-days: 14
 
